@@ -1,0 +1,47 @@
+<div style="width: 100%;text-align:left"> 
+        <table style="width:70%;text-align:left;">
+                <tr>
+                    <td style="width:20%;padding-left:20px;"><strong>Trade:</strong><select  [(ngModel)]="SearchingSelectedTrade">
+                            <option value="All">--ALL--</option> <option *ngFor="let trd of seracingTradList" value={{trd.id}}  >{{trd.value}}  </option>  
+                        </select></td>
+                        <td style="width:20%;"><strong>Lavel:</strong><select  [(ngModel)]="SearchingSelectedLavel">
+                                <option value="All">--ALL--</option> <option *ngFor="let lvl of seracingLavelList" value={{lvl.lavelid}}  >{{lvl.value}}  </option>  
+                            </select></td>
+                        <td style="width:60%;text-align:left;"><input type="button" (click)="searchStudent()" value="Search"></td>
+                </tr>
+        </table>
+</div>
+<div style="text-align:center"> 
+<table style="width: 100%;">
+     <thead style="font-weight: bold;background-color: darkolivegreen;color: white;">
+        <td>Edit Action</td>
+        <td>Remove Action</td>
+        <td>Syllabus Name</td>
+        <td>Trade</td>
+        <td>Lavel</td>
+        <td>Syllabus File Name</td>
+        <td>Test Plan Name</td>
+        <td>Language</td>
+        <td>DeptOff Name</td>
+        <td>Manager Name</td>
+        <td>Active Date</td>
+     </thead>
+     <tbody>
+    <tr *ngFor="let st of service.list | paginate:service.config" >
+        <td><button (click)="populateform(st)">Edit</button></td>
+        <td><button (click)="deletestudent(st)">Delete</button></td>
+        <td >{{st.SyllabusName}}</td>
+        <td>{{st.TradeSt}}</td>
+        <td>{{st.LavelSt}}</td>
+        <td ><a href="http://localhost:59890/api/FileManagement/{{st.SyllabusFile}}">{{st.SyllabusFile}}</a> </td>
+        <td ><a href="http://localhost:59890/api/FileManagement/{{st.TestPlanFile}}" >{{st.TestPlanFile}}</a></td>
+        <td>{{st.Language}}</td>
+        <td>{{st.DeptOffName}}</td>
+        <td>{{st.ManagerName}}</td>
+        <td>{{st.ActiveDateSt}}</td>
+    </tr>
+</tbody>
+    
+</table>
+<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</div>

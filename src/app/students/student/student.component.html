@@ -1,0 +1,32 @@
+
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+ <div style="height:10px;"><input type="hidden" name="StudentID"  [value]="service.formdata.StudentID"></div>    
+<table style="height:30px;width:100%;">
+    <tr>
+    <td style="width:33%;vertical-align: top;"><strong>Trade:</strong><select  name="Trade" #Trade="ngModel" [(ngModel)]="service.formdata.Trade"  (change)="ChangeTrade()" required>
+        <option value="">--Select Trade--</option> <option *ngFor="let trd of Trdelist" value={{trd.id}} > {{trd.value}}  </option>  
+    </select>
+    </td>
+<td style="width:33%;vertical-align: top;"><strong>Lavel:</strong> <select name="Lavel" #Lavel="ngModel" [(ngModel)]="service.formdata.Lavel" required>
+        <option value="">--Select Lavel--</option><option *ngFor="let lvl of Lavellist" value={{lvl.lavelid}}>{{lvl.value}}</option>  
+    </select>
+</td>
+<td style="width:34%;vertical-align:top;"><strong>Language:</strong><label *ngFor="let leng of Languages" ><input  type="checkbox"  [(ngModel)]="leng.selected"  name="leng_Name"   value="{{leng.value}}" id={{leng.value}} required >{{leng.description}}</label>
+</td>
+</tr>
+</table>
+<div style="height:30px;"><strong>Syllabus Name:</strong><input name="SyllabusName" #SyllabusName="ngModel" [(ngModel)]="service.formdata.SyllabusName" type="text" placeholder="Syllabus Name" required></div>
+
+<div style="height:30px;"><strong>Syllabus Upload:</strong> <input type="file" #filesk id="flsyll" name="sylfile"  placeholder=" Syllabus" (change)="FileuploadSylebus(filesk.files)" >
+</div>
+<div style="height:30px;"><strong>Test Plan Upload:</strong> <input type="file" #file id="plnfile" name="Testfile" placeholder="Test pLan" (change)="FileuploadPlan(file.files)" >
+</div>
+<div style="height:30px;"><strong>Department Name:</strong> <input name="DeptOffName" #DeptOffName="ngModel" [(ngModel)]="service.formdata.DeptOffName" type="text" placeholder="Deparement Officer" required></div>
+<div style="height:30px;"><strong>Manager Name:</strong> <input name="ManagerName" #DeptOffName="ngModel" [(ngModel)]="service.formdata.ManagerName" type="text" placeholder="Manager Name" required></div>
+<div style="height:30px;"><strong>Active Date:</strong> <input type="date"  name="idActiveDate" id="txtActiveDate"  [(ngModel)]="service.formdata.ActiveDate"></div>    
+<div><input type="hidden"  name="SyllabusFile"  [value]="service.formdata.SyllabusFile" ></div>    
+<div><input type="hidden"  name="TestPlanFile"  [value]="service.formdata.TestPlanFile"  ></div>      
+<div style="height:30px;">
+    <button type="submit" [disabled]="form.invalid">Submit</button>&nbsp;&nbsp;&nbsp;<button type="button" (click)="resetForm()" >Clear</button>
+</div>
+</form>
